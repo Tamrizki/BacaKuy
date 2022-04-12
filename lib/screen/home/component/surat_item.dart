@@ -6,9 +6,11 @@ class SuratItem extends StatelessWidget {
     Key? key,
     required this.surat,
     required this.onTap,
+    required this.onTapAudio,
   }) : super(key: key);
   final SurahResponse surat;
   final VoidCallback onTap;
+  final VoidCallback onTapAudio;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -16,13 +18,16 @@ class SuratItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            Row(
+              children: [
+                Text(
               '(${surat.nomor})',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              width: 10,
+              width: 20,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,6 +51,21 @@ class SuratItem extends StatelessWidget {
                 ),
               ],
             ),
+              ],
+            ),
+            GestureDetector(
+              onTap: onTapAudio,
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.blue, width: 3),
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/play.png")),
+                ),
+              ),
+            )
           ],
         ),
       ),

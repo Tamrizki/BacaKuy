@@ -22,13 +22,21 @@ class HomeScreen extends StatelessWidget {
                     itemCount: controller.listSurah.length,
                     itemBuilder: (context, index) => SuratItem(
                           surat: controller.listSurah[index],
-                          onTap: () => Get.toNamed(
+                          onTap: () => {
+                            controller.pause(),
+                            Get.toNamed(
                             AppRoutes.DETAIL,
                             arguments: [
                               {"number": controller.listSurah[index].nomor},
                               {"surah": controller.listSurah[index].nama}
-                            ],
-                          ),
+                            ],),
+                          },
+                          onTapAudio: () {
+                            controller.onTapAudio(
+                              index,
+                              '${controller.listSurah[index].audio}',
+                            );
+                          },
                         ));
           },
         ),

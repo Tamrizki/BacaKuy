@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:baca_kuy/models/ayat.dart';
 import 'package:baca_kuy/provider/ayat_provider.dart';
 import 'package:get/get.dart';
@@ -31,5 +32,8 @@ class DetailController extends GetxController {
         print('=====> error : ${error}');
       },
     );
+  }
+  void play(String url) async {
+    int result = await AudioPlayer(mode: PlayerMode.LOW_LATENCY).play(url);
   }
 }
